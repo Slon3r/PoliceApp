@@ -1,0 +1,164 @@
+import React, { useState } from 'react';
+
+// --- Helper Components ---
+// AI report on user data.
+const Header = () => (
+  <header className="w-full flex justify-between items-center p-6">
+    <div className="flex-shrink-0">
+      <h1 className="font-sans text-4xl font-bold tracking-widest uppercase text-white">CLEARWATCH</h1>
+      <p className="font-terminal text-sm text-gray-400">Clearwater Police Intelligence Hub.</p>
+    </div>
+    <nav className="hidden md:flex items-center space-x-8">
+      <a href="#" className="font-sans text-lg font-bold uppercase text-white hover:text-gray-300 transition-all duration-300">
+        Database
+      </a>
+      <a href="#" className="font-sans text-lg font-bold uppercase text-white hover:text-gray-300 transition-all duration-300">
+        Media
+      </a>
+      <a href="#" className="font-sans text-lg font-bold uppercase text-white hover:text-gray-300 transition-all duration-300">
+        Toolkit
+      </a>
+      <a href="#" className="font-sans text-lg font-bold uppercase py-3 px-6 bg-white text-black hover:bg-gray-300 transition-all duration-300">
+        Submit Evidence
+      </a>
+    </nav>
+  </header>
+);
+
+// --- Main Page Component ---
+
+function ActionPlanPage() {
+  const [selectedGoal, setSelectedGoal] = useState(null);
+
+  const goals = {
+    complaint: {
+      title: "File an Official Complaint",
+      description: "Generate and file a formal complaint with the appropriate authorities.",
+      content: (
+        <div className="space-y-4 text-gray-300">
+          <p>Based on the AI analysis, the following complaint has been drafted. You can use the contact information below to file it directly.</p>
+          <div className="bg-gray-900 border border-gray-700 p-4">
+            <h4 className="font-terminal text-lg text-white mb-2">Draft Complaint Text:</h4>
+            <p className="font-mono text-sm">"On [Date], at approximately [Time] near [Location], I was stopped by Officer [Officer Name], Badge #[Badge Number]. During this interaction, the following potential violations occurred: [List of AI-identified violations]. This formal complaint is submitted for your review..."</p>
+          </div>
+          <div>
+            <h4 className="font-terminal text-lg text-white">How to File:</h4>
+            <ul className="list-disc list-inside mt-2 font-mono text-sm">
+              <li><strong>Email:</strong> policeprofessionalstandards@myclearwater.com</li>
+              <li><strong>Phone (Office of Professional Standards):</strong> (727) 562-4304</li>
+              <li><strong>In Person:</strong> 645 Pierce St., Clearwater, FL 33756</li>
+            </ul>
+          </div>
+        </div>
+      )
+    },
+    legal: {
+      title: "Explore Legal Action",
+      description: "Get information and contacts to explore your legal options with civil rights experts.",
+      content: (
+        <div className="space-y-4 text-gray-300">
+            <p>The AI analysis identified potential violations of your rights. You may wish to consult with a legal professional. Here are some resources.</p>
+             <div className="bg-gray-900 border border-gray-700 p-4">
+                <h4 className="font-terminal text-lg text-white mb-2">Potential Rights Violated:</h4>
+                <p className="font-mono text-sm">- Fourth Amendment (unreasonable search/seizure)<br/>- Florida Statute § 836.12 (Harassment)</p>
+            </div>
+            <div>
+                <h4 className="font-terminal text-lg text-white">Legal Contacts:</h4>
+                <ul className="list-disc list-inside mt-2 font-mono text-sm">
+                    <li><strong>ACLU of Florida:</strong> (786) 363-2700</li>
+                    <li><strong>Gulfcoast Legal Services (Clearwater):</strong> (727) 443-0657</li>
+                    <li><strong>Bay Area Legal Services (Clearwater):</strong> (813) 226-8685</li>
+                </ul>
+            </div>
+        </div>
+      )
+    },
+    amplify: {
+      title: "Amplify Your Story",
+      description: "Use your evidence to contribute to the public narrative and our media campaigns.",
+      content: (
+        <div className="space-y-4 text-gray-300">
+            <p>Your story is a powerful tool. By sharing it, you help control the narrative. Choose an option below to add your evidence to our public media feeds.</p>
+            <div className="flex flex-col md:flex-row gap-4 mt-4">
+                <button className="font-terminal flex-1 uppercase p-3 bg-gray-700 text-white hover:bg-gray-600">Post to "Porkchop" Feed</button>
+                <button className="font-terminal flex-1 uppercase p-3 bg-gray-700 text-white hover:bg-gray-600">Submit to AI News Desk</button>
+            </div>
+        </div>
+      )
+    }
+  };
+
+  return (
+    <>
+      <style>{`
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #000; 
+            color: #FFFFFF; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .font-terminal { font-family: 'Fira Code', monospace; }
+      `}</style>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+      <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+      <div className="relative flex flex-col flex-grow bg-black text-white">
+        <Header />
+
+        <main className="flex-grow flex flex-col items-center w-full p-4 md:p-8">
+          <div className="w-full max-w-5xl">
+            
+            <div className="text-center mb-8">
+                <h2 className="font-sans text-4xl md:text-6xl font-bold uppercase tracking-wider">Actionable Intelligence Report</h2>
+                <p className="text-gray-400 mt-2">Your submission has been analyzed. Review your case and choose your objective below to get a customized action plan.</p>
+            </div>
+
+            {/* AI Report Placeholder */}
+            <div className="mb-8 p-6 bg-gray-900 border border-gray-700">
+                <h3 className="font-terminal text-xl text-white mb-4">AI Analysis Summary: Case ID [7B4-E21-X9C]</h3>
+                <div className="font-mono text-sm text-gray-300 space-y-2">
+                    <p><strong>Date:</strong> [AI Detected Date]</p>
+                    <p><strong>Location:</strong> [AI Detected Location]</p>
+                    <p><strong>Involved Officer(s):</strong> [Officer Name, Badge #]</p>
+                    <p><strong>Potential Violations Identified:</strong></p>
+                    <ul className="list-disc list-inside pl-4">
+                        <li>Potential Fourth Amendment Violation (unreasonable search/seizure)</li>
+                        <li>Potential violation of Florida Statute § 836.12 (Harassment)</li>
+                    </ul>
+                </div>
+            </div>
+
+            {/* Goal Selection */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {Object.keys(goals).map(key => (
+                <button 
+                  key={key}
+                  onClick={() => setSelectedGoal(key)}
+                  className={`p-6 border-2 text-left transition-all duration-300 ${selectedGoal === key ? 'bg-white text-black border-white' : 'border-gray-700 hover:border-white'}`}
+                >
+                  <h3 className="font-sans text-xl font-bold uppercase">{goals[key].title}</h3>
+                  <p className="text-sm mt-2 text-gray-400">{goals[key].description}</p>
+                </button>
+              ))}
+            </div>
+
+            {/* Dynamic Content Area */}
+            {selectedGoal && (
+              <div className="mt-8 p-6 bg-gray-900 border border-gray-700">
+                {goals[selectedGoal].content}
+              </div>
+            )}
+
+          </div>
+        </main>
+        
+      </div>
+    </>
+  );
+}
+
+export default ActionPlanPage;

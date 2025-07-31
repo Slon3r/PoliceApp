@@ -1,0 +1,3 @@
+# User Interface Design Goals
+
+The platform will feature a single, unified user experience. The brand is serious, credible, and defiant. The UI must be clean, data-forward, and highly credible, presenting information like a trusted journalistic source. The feeling should be one of transparent authority, while incorporating a unique, rebellious "hip hop hacker" aesthetic in its typography and interactive elements.

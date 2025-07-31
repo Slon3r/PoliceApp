@@ -1,0 +1,98 @@
+import React from 'react';
+
+// Main App component
+function App() {
+  return (
+    <>
+      {/*
+        The following style block and script tags are typically placed in the
+        public/index.html file or managed by a build process in a real React app.
+        For this self-contained immersive, they are included here for direct preview.
+      */}
+      <style>
+        {`
+          /*
+            These body styles are included for direct preview within this immersive.
+            In a typical React app, these would be in a global CSS file or public/index.html.
+            The Tailwind classes on the main div below ensure colors are applied correctly
+            to the React app's root element.
+          */
+          body {
+            font-family: 'Inter', sans-serif;
+            /* background-color and color are now handled by Tailwind classes on the main div */
+          }
+          .font-terminal {
+            font-family: 'Fira Code', monospace;
+          }
+          /* Simple animation for UI elements appearing */
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        `}
+      </style>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+      <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+      {/* Main container for the static, non-scrolling layout */}
+      {/* Added bg-black and text-white to ensure correct colors on the main app container */}
+      <div className="relative flex flex-col min-h-screen p-4 md:p-8 bg-black text-white">
+
+        {/* Header (Consistent with Homepage) */}
+        <header className="w-full flex justify-between items-center p-4 border-b border-gray-700">
+          <div className="flex-shrink-0">
+            <h1 className="font-terminal text-3xl md:text-5xl font-bold uppercase text-white">Clearwatch</h1>
+            <p className="font-terminal text-sm md:text-base text-gray-400">Clearwater Police Intelligence Hub.</p>
+          </div>
+          <nav className="hidden md:flex flex-grow items-center justify-end space-x-4 ml-16">
+            <a href="#" className="font-terminal text-lg uppercase p-3 border border-gray-700 text-gray-400 hover:text-white hover:border-white transition-all duration-300">Database</a>
+            <a href="#" className="font-terminal text-lg uppercase p-3 border border-gray-700 text-gray-400 hover:text-white hover:border-white transition-all duration-300">Media</a>
+            <a href="#" className="font-terminal text-lg uppercase p-3 border border-gray-700 text-gray-400 hover:text-white hover:border-white transition-all duration-300">Toolkit</a>
+            <a href="#" className="font-terminal text-lg uppercase p-3 bg-white text-black hover:bg-gray-300 transition-all duration-300">Submit Evidence</a>
+          </nav>
+        </header>
+
+        {/* Main Content Area for the Confirmation */}
+        <main className="flex-grow flex flex-col items-center justify-center text-center py-12">
+          <div className="w-full max-w-3xl space-y-8">
+
+            {/* 1. Success Message */}
+            <div className="fade-in">
+              <h2 className="font-terminal text-4xl md:text-6xl font-bold uppercase">Submission Received</h2>
+              <p className="text-lg text-gray-400 mt-2">Your report has been securely submitted to the Clearwatch database.</p>
+            </div>
+
+            {/* 2. Tracking ID */}
+            <div className="fade-in border-2 border-dashed border-gray-700 p-6" style={{ animationDelay: '0.2s' }}>
+              <p className="font-terminal text-sm uppercase text-gray-500 tracking-widest">Your Anonymous Case ID</p>
+              <p className="font-terminal text-3xl md:text-4xl tracking-wider my-2">7B4-E21-X9C</p>
+              <p className="text-sm text-gray-400">Save this ID. You can use it to track the status of your report in the future.</p>
+            </div>
+
+            {/* 3. Next Steps & Call to Action */}
+            <div className="text-left bg-gray-900 border border-gray-800 p-6 fade-in" style={{ animationDelay: '0.4s' }}>
+              <h3 className="font-terminal text-xl font-bold mb-4">What Happens Next?</h3>
+              <ol className="list-decimal list-inside space-y-2 text-gray-300">
+                <li>Your submission will be processed by our AI to extract key data.</li>
+                <li>The report will be reviewed by a human administrator for verification.</li>
+                <li>Once verified, it will be added to the public database and map.</li>
+              </ol>
+            </div>
+
+            <div className="fade-in" style={{ animationDelay: '0.6s' }}>
+              <a href="#" className="font-terminal text-lg uppercase p-3 border border-gray-700 text-gray-400 hover:text-white hover:border-white transition-all duration-300">
+                &larr; Return to Homepage
+              </a>
+            </div>
+
+          </div>
+        </main>
+      </div>
+    </>
+  );
+}
+
+export default App;

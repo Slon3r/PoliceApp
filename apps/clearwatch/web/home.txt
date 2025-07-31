@@ -1,0 +1,112 @@
+import React from 'react';
+
+// Main App component for the Clearwatch Intelligence Hub page
+function App() {
+  return (
+    <>
+      {/*
+        The following style block and script tags are typically placed in the
+        public/index.html file or managed by a build process in a real React app.
+        For this self-contained immersive, they are included here for direct preview.
+      */}
+      <style>
+        {`
+          /*
+            These body styles are included for direct preview within this immersive.
+            In a typical React app, these would be in a global CSS file or public/index.html.
+            The Tailwind classes on the main div below ensure colors are applied correctly
+            to the React app's root element.
+          */
+          body {
+            font-family: 'Inter', sans-serif;
+            /* background-color and color are now handled by Tailwind classes on the main div */
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+          }
+
+          /* Font for the terminal/code elements and headlines */
+          .font-terminal {
+            font-family: 'Fira Code', monospace;
+          }
+
+          /* Main content should take up available space, applied via Tailwind flex-grow */
+        `}
+      </style>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+      <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+      {/* Main container for the static, non-scrolling layout */}
+      {/* Applying bg-black, text-white, min-h-screen, and flex-grow to the main app container */}
+      <div className="relative flex flex-col min-h-screen p-4 md:p-8 bg-black text-white flex-grow">
+
+        {/* HUD Corner Brackets for the tactical feel */}
+        <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-white opacity-30"></div>
+        <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-white opacity-30"></div>
+        <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-white opacity-30"></div>
+        <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-white opacity-30"></div>
+
+        {/* Header is now a visually distinct block with less vertical padding */}
+        <header className="w-full flex justify-between items-center p-4 border-b border-gray-700">
+          {/* Left Side: Title and new subtitle */}
+          <div className="flex-shrink-0">
+            <h1 className="font-terminal text-3xl md:text-5xl font-bold uppercase text-white">Clearwatch</h1>
+            <p className="font-terminal text-sm md:text-base text-gray-400">Clearwater Police Intelligence Hub.</p>
+          </div>
+
+          {/* Right Side Navigation now grows to fill space and distributes its items */}
+          <nav className="hidden md:flex flex-grow items-center justify-end space-x-4 ml-16">
+            {/* Links are now styled as outlined buttons */}
+            <a href="#" className="font-terminal text-lg uppercase p-3 border border-gray-700 text-gray-400 hover:text-white hover:border-white transition-all duration-300">
+              Database
+            </a>
+            <a href="#" className="font-terminal text-lg uppercase p-3 border border-gray-700 text-gray-400 hover:text-white hover:border-white transition-all duration-300">
+              Media
+            </a>
+            <a href="#" className="font-terminal text-lg uppercase p-3 border border-gray-700 text-gray-400 hover:text-white hover:border-white transition-all duration-300">
+              Toolkit
+            </a>
+            {/* Submit Evidence button is now black and white */}
+            <a href="#" className="font-terminal text-lg uppercase p-3 bg-white text-black hover:bg-gray-300 transition-all duration-300">
+              Submit Evidence
+            </a>
+          </nav>
+          {/* Mobile Menu Button (placeholder) */}
+          <div className="md:hidden">
+            <button className="text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        {/* Main Content Area is now clean and ready for content */}
+        <main className="flex-grow flex flex-col items-center justify-center text-center">
+          {/* This area is now empty, ready for the map or other content */}
+          <p className="text-gray-600 font-terminal">Main Content Area</p>
+        </main>
+      </div>
+
+      {/* Floating AI Assistant Chatbar */}
+      <footer className="fixed bottom-0 left-0 right-0 p-4 flex justify-center">
+        <div className="w-full max-w-2xl">
+          <div className="bg-gray-900 border border-gray-700 rounded-lg shadow-lg p-2 flex items-center">
+            {/* Font size reduced from text-lg to text-base */}
+            <input type="text" className="flex-grow bg-transparent text-white font-terminal text-base focus:outline-none mx-2" placeholder="Ask me anything or tell me about your police interaction . . ." />
+            <button className="p-2 text-gray-400 hover:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+}
+
+export default App;

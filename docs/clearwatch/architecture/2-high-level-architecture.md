@@ -1,0 +1,3 @@
+# 2. High Level Architecture
+[cite_start]The Clearwatch application will be architected as a serverless, full-stack application using Supabase for the backend and Vercel for the frontend. [cite: 85] [cite_start]The frontend will be a responsive web application built with Next.js, communicating with a backend comprised of Supabase services (Auth, Database, Storage) and serverless Edge Functions. [cite: 86] [cite_start]This approach is chosen for its rapid development, high security, automatic scalability, and cost-effectiveness. [cite: 87]
+

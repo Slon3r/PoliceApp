@@ -1,0 +1,3 @@
+# 12. Security and Performance
+[cite_start]The architecture includes a defense-in-depth security strategy, including a strict Content Security Policy, server-side file scanning, abuse prevention, a data retention policy, mandatory MFA for admins, and Row Level Security on all database tables. [cite: 108] [cite_start]Performance is addressed through modern frontend practices like code splitting and server-side rendering. [cite: 109]
+

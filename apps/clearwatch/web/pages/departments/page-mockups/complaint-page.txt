@@ -1,0 +1,99 @@
+import React from 'react';
+
+// --- Helper Components ---
+// This Header is a direct implementation of your screenshot's design for perfect consistency.
+const Header = () => (
+  <header className="w-full flex justify-between items-center p-6">
+    <div className="flex-shrink-0">
+      <h1 className="font-sans text-4xl font-bold tracking-widest uppercase text-white">CLEARWATCH</h1>
+      <p className="font-terminal text-sm text-gray-400">Clearwater Police Intelligence Hub.</p>
+    </div>
+    <nav className="hidden md:flex items-center space-x-8">
+      <a href="#" className="font-sans text-lg font-bold uppercase text-white hover:text-gray-300 transition-all duration-300">Database</a>
+      <a href="#" className="font-sans text-lg font-bold uppercase text-white hover:text-gray-300 transition-all duration-300">Media</a>
+      <a href="#" className="font-sans text-lg font-bold uppercase text-white hover:text-gray-300 transition-all duration-300">Toolkit</a>
+      <a href="#" className="font-sans text-lg font-bold uppercase py-3 px-6 bg-white text-black hover:bg-gray-300 transition-all duration-300">Submit Evidence</a>
+    </nav>
+  </header>
+);
+
+// --- Main Page Component ---
+
+function FileComplaintPage() {
+  const caseId = "7B4-E21-X9C"; // Example Case ID from previous step
+
+  return (
+    <>
+      <style>{`
+        body { font-family: 'Inter', sans-serif; background-color: #000; color: #FFFFFF; }
+        .font-terminal { font-family: 'Fira Code', monospace; }
+      `}</style>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+      <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+
+      <div className="relative flex flex-col min-h-screen bg-black text-white">
+        <Header />
+
+        <main className="flex-grow flex flex-col items-center w-full p-4 md:p-8">
+          <div className="w-full max-w-5xl">
+            
+            <div className="text-center mb-12">
+                <h2 className="font-sans text-4xl md:text-6xl font-bold uppercase tracking-wider">File an Official Complaint</h2>
+                <p className="text-gray-400 mt-2 font-terminal">CASE ID: {caseId}</p>
+            </div>
+
+            <div className="space-y-8">
+                {/* Step 1: Prepare Your Complaint */}
+                <div className="border border-gray-700 p-6">
+                    <h3 className="font-terminal text-2xl font-bold text-white mb-4">// STEP 1: PREPARE YOUR COMPLAINT</h3>
+                    <p className="text-gray-300 mb-4">Copy the pre-drafted complaint text below. It contains the key details from your report. You can edit it before sending.</p>
+                    <div className="bg-gray-900 border border-gray-600 p-4 font-mono text-sm text-gray-300">
+                        <p><strong>To the Clearwater Police Office of Professional Standards,</strong></p>
+                        <p className="mt-2">This is a formal complaint regarding an incident that occurred on [Date] at approximately [Time] near [Location]. I was interacting with Officer [Officer Name], Badge #[Badge Number].</p>
+                        <p className="mt-2">During this interaction, I believe my rights were violated. The specific actions included [Summary of AI-identified violations, e.g., an illegal search of my vehicle without probable cause].</p>
+                        <p className="mt-2">This letter serves as a formal request for a full investigation into this matter. My case ID with Clearwatch is {caseId}.</p>
+                        <p className="mt-2">Sincerely,<br/>[Your Name, if you choose to include it]</p>
+                    </div>
+                </div>
+
+                {/* Step 2: Choose Your Channel */}
+                <div className="border border-gray-700 p-6">
+                    <h3 className="font-terminal text-2xl font-bold text-white mb-4">// STEP 2: CHOOSE YOUR CHANNEL (Direct Action)</h3>
+                    <p className="text-gray-300 mb-4">Contact the people who can directly investigate and punish misconduct. Be firm, professional, and relentless.</p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {/* By Phone */}
+                        <div className="bg-gray-900 p-4 border border-gray-800">
+                            <h4 className="font-sans text-xl font-bold uppercase">By Phone</h4>
+                            <p className="text-sm text-gray-400 mt-1">Direct verbal complaint.</p>
+                            <p className="font-terminal text-2xl text-white my-4">(727) 562-4304</p>
+                            <p className="font-terminal text-xs text-gray-500">Ask for the Office of Professional Standards. State your purpose clearly. Do not let them redirect you.</p>
+                        </div>
+                        {/* By Email */}
+                        <div className="bg-gray-900 p-4 border border-gray-800">
+                            <h4 className="font-sans text-xl font-bold uppercase">By Email</h4>
+                            <p className="text-sm text-gray-400 mt-1">Creates a written record.</p>
+                             <p className="font-terminal text-lg text-white my-4 break-all">policeprofessionalstandards@myclearwater.com</p>
+                            <p className="font-terminal text-xs text-gray-500">Paste your prepared complaint into the body of the email. Use a clear subject line like "Formal Complaint: Incident on [Date]".</p>
+                        </div>
+                        {/* In Person */}
+                        <div className="bg-gray-900 p-4 border border-gray-800">
+                            <h4 className="font-sans text-xl font-bold uppercase">In Person</h4>
+                            <p className="text-sm text-gray-400 mt-1">Face-to-face accountability.</p>
+                            <p className="font-terminal text-lg text-white my-4">645 Pierce St.<br/>Clearwater, FL 33756</p>
+                            <p className="font-terminal text-xs text-gray-500">Go to the Police Headquarters and ask to speak with a supervisor or a member of the Office of Professional Standards.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+          </div>
+        </main>
+      </div>
+    </>
+  );
+}
+
+export default FileComplaintPage;

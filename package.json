@@ -1,5 +1,10 @@
 {
   "name": "bmad-method",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "version": "4.33.0",
   "description": "Breakthrough Method of Agile AI-driven Development",
   "main": "tools/cli.js",
@@ -8,6 +13,10 @@
     "bmad-method": "tools/bmad-npx-wrapper.js"
   },
   "scripts": {
+    "dev": "pnpm run dev:web",
+    "dev:web": "cd apps/clearwatch/web && pnpm dev",
+    "dev:api": "cd apps/clearwatch/api && supabase functions serve",
+    "dev:db": "supabase start",
     "build": "node tools/cli.js build",
     "build:agents": "node tools/cli.js build --agents-only",
     "build:teams": "node tools/cli.js build --teams-only",
@@ -35,7 +44,7 @@
   },
   "dependencies": {
     "@kayvan/markdown-tree-parser": "^1.5.0",
-    "bmad-method": "^4.30.3",
+    "bmad-method": "^4.33.0",
     "chalk": "^4.1.2",
     "commander": "^14.0.0",
     "fs-extra": "^11.3.0",

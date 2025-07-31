@@ -67,7 +67,7 @@ program
         process.exit(0);
       }
     } catch (error) {
-      console.error(chalk.red('Installation failed:'), error.message);
+      console.error(chalk.red('Installation failed:'), error);
       process.exit(1);
     }
   });
