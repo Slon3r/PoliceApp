@@ -25,9 +25,6 @@ jobs:
         
     - name: Install dependencies
       run: pnpm install
-      
-    - name: Install Frontend Dependencies
-      run: cd apps/clearwatch/web && pnpm install
     
     - name: Build frontend
       run: cd apps/clearwatch/web && pnpm build
