@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    
+      
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
@@ -25,10 +25,12 @@ jobs:
         
     - name: Install dependencies
       run: pnpm install
-    
+      
     - name: Build frontend
+      env:
+        NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
       run: cd apps/clearwatch/web && pnpm build
-    
       
     - name: Install Supabase CLI
       run: |
