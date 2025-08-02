@@ -1,19 +1,29 @@
 'use client'
 
 import React from 'react'
+import dynamic from 'next/dynamic'
+
+// Dynamically import the wireframe map with SSR disabled
+const BackgroundWireframeMap = dynamic(() => import('../src/components/BackgroundWireframeMap'), {
+  ssr: false
+});
 
 export default function HomePage() {
   return (
-    <div className="relative flex flex-col min-h-screen p-4 md:p-8 bg-black text-white">
+    <div className="relative flex flex-col min-h-screen p-4 md:p-8 bg-black text-white"
+         style={{ zIndex: 1 }}>
       
-      {/* HUD Corner Brackets */}
-      <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-white opacity-30"></div>
-      <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-white opacity-30"></div>
-      <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-white opacity-30"></div>
-      <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-white opacity-30"></div>
+      {/* Wireframe Map Layer - Above black background, below UI */}
+      <BackgroundWireframeMap />
+      
+      {/* HUD Corner Brackets - Above everything */}
+      <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-white opacity-30" style={{ zIndex: 10 }}></div>
+      <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-white opacity-30" style={{ zIndex: 10 }}></div>
+      <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-white opacity-30" style={{ zIndex: 10 }}></div>
+      <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-white opacity-30" style={{ zIndex: 10 }}></div>
 
-      {/* Header */}
-      <header className="w-full flex justify-between items-center p-4 border-b border-gray-700">
+      {/* Header - Above map */}
+      <header className="w-full flex justify-between items-center p-4 border-b border-gray-700" style={{ zIndex: 10 }}>
         <div className="flex-shrink-0">
           <h1 className="font-terminal text-3xl md:text-5xl font-bold uppercase text-white">Clearwatch</h1>
           <p className="font-terminal text-sm md:text-base text-gray-400">Clearwater Police Intelligence Hub</p>
@@ -44,16 +54,16 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Main Content Area */}
-      <main className="flex-grow flex flex-col items-center justify-center py-8 px-4">
+      {/* Main Content Area - Above map */}
+      <main className="flex-grow flex flex-col items-center justify-center py-8 px-4" style={{ zIndex: 10 }}>
         <div className="text-center">
           <h2 className="font-terminal text-2xl text-white mb-4">Ready for Development</h2>
           <p className="text-gray-400">Your clean homepage - add new content here</p>
         </div>
       </main>
 
-      {/* Floating AI Assistant Chatbar */}
-      <footer className="fixed bottom-0 left-0 right-0 p-4 flex justify-center">
+      {/* Floating AI Assistant Chatbar - Above map */}
+      <footer className="fixed bottom-0 left-0 right-0 p-4 flex justify-center" style={{ zIndex: 10 }}>
         <div className="w-full max-w-2xl">
           <div className="bg-gray-900 border border-gray-700 rounded-lg shadow-lg p-2 flex items-center">
             <input 
