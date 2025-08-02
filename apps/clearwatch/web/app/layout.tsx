@@ -18,8 +18,10 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
       </head>
-      <body>
-        {children}
+      <body className="bg-black">
+        <div className="min-h-screen flex flex-col">
+          {children}
+        </div>
       </body>
     </html>
   )

@@ -74,7 +74,15 @@
 }
  
 @layer base {
-  body {
+  html, body {
+    overflow-x: hidden;
     font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer utilities {
+  .drop-shadow-glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5),
+                 0 0 20px rgba(255, 255, 255, 0.3);
   }
 }
