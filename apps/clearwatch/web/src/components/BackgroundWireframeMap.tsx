@@ -11,53 +11,56 @@ export default function BackgroundWireframeMap() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    let mapInstance: any = null;
+    let mapInstance: any = null; // eslint-disable-line @typescript-eslint/no-explicit-any
+    let isMounted = true;
 
     const initMap = async () => {
       try {
-        console.log('Loading wireframe map...');
+        console.log('Loading clean map...');
+        
+        // Check if component is still mounted
+        if (!isMounted || !mapContainer.current) {
+          return;
+        }
         
         // Dynamic import to ensure client-side loading
         const maplibregl = await import('maplibre-gl');
         
-        if (!mapContainer.current) {
-          throw new Error('Map container not found');
+        // Double-check after async operation
+        if (!isMounted || !mapContainer.current) {
+          return;
         }
 
-        // High-quality wireframe style
-        const wireframeStyle = {
-          version: 8,
+        // High-contrast minimalist style
+        const mapStyle = {
+          version: 8 as const,
           sources: {
-            'osm-raster': {
-              type: 'raster',
+            'osm': {
+              type: 'raster' as const,
               tiles: [
                 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
               ],
               tileSize: 256,
-              maxzoom: 19,
-              attribution: '© OpenStreetMap contributors'
+              maxzoom: 19
             }
           },
+          glyphs: 'https://fonts.openmaptiles.org/{fontstack}/{range}.pbf',
           layers: [
-            // Transparent background
+            // Dark background
             {
               id: 'background',
-              type: 'background',
+              type: 'background' as const,
               paint: {
-                'background-color': 'rgba(0, 0, 0, 0)'
+                'background-color': '#000000'
               }
             },
-            // High-quality raster layer with valid MapLibre properties
+                // Standard map layer with all details
             {
-              id: 'osm-wireframe',
-              type: 'raster',
-              source: 'osm-raster',
+              id: 'osm-base',
+              type: 'raster' as const,
+              source: 'osm',
               paint: {
                 'raster-opacity': 1,
-                'raster-contrast': 1,
-                'raster-brightness-min': 0,
-                'raster-brightness-max': 0.8,
-                'raster-saturation': -1,
                 'raster-fade-duration': 0
               }
             }
@@ -66,54 +69,85 @@ export default function BackgroundWireframeMap() {
 
         mapInstance = new maplibregl.Map({
           container: mapContainer.current,
-          style: wireframeStyle,
+          style: mapStyle,
           center: CLEARWATER_CENTER,
-          zoom: 13,
-          antialias: true,
+          zoom: 14,
+          minZoom: 8,
+          maxZoom: 19,
           attributionControl: false,
-          interactive: false // No interaction to avoid interfering with UI
+          interactive: true,
+          doubleClickZoom: true,
+          scrollZoom: true,
+          dragPan: true,
+          keyboard: true,
+          touchZoomRotate: true,
+          renderWorldCopies: true
         });
+
+        // Add navigation controls for better interaction
+        mapInstance.addControl(new maplibregl.NavigationControl(), 'top-right');
 
         mapInstance.on('load', () => {
-          console.log('Wireframe map loaded successfully');
-          setMapLoaded(true);
-          setError(null);
+          console.log('✅ Clean map loaded successfully');
+          if (isMounted) {
+            setMapLoaded(true);
+            setError(null);
+            console.log('✅ Map state updated: mapLoaded = true');
+          }
         });
 
-        mapInstance.on('error', (e: any) => {
-          console.error('Map error:', e);
-          setError(`Map error: ${e.error?.message || 'Unknown error'}`);
+        mapInstance.on('error', (e: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
+          console.error('Map error details:', {
+            message: e.error?.message || e.message || 'Unknown error',
+            type: e.type,
+            error: e.error,
+            fullEvent: e
+          });
+          if (isMounted) {
+            const errorMsg = e.error?.message || e.message || JSON.stringify(e) || 'Unknown map error';
+            setError(`Map error: ${errorMsg}`);
+          }
         });
 
       } catch (err) {
         console.error('Error initializing map:', err);
-        setError(`Failed to initialize: ${err}`);
+        if (isMounted) {
+          setError(`Failed to initialize: ${err}`);
+        }
       }
     };
 
     initMap();
 
     return () => {
+      isMounted = false;
       if (mapInstance) {
-        mapInstance.remove();
+        try {
+          mapInstance.remove();
+        } catch (e) {
+          console.warn('Error removing map:', e);
+        }
       }
     };
   }, []);
 
   return (
     <div 
-      className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ zIndex: 2 }} // Above black background, below UI
+      className="absolute inset-0 w-full h-full"
+      style={{ 
+        zIndex: 2,
+        pointerEvents: mapLoaded ? 'auto' : 'none' // Enable interaction when loaded
+      }}
     >
       <div 
         ref={mapContainer} 
         className="w-full h-full"
-        style={{
-          // High-quality white wireframe filters
-          filter: mapLoaded ? 'invert(1) contrast(3) brightness(1.2) saturate(0)' : 'none',
-          mixBlendMode: mapLoaded ? 'screen' : 'normal',
-          imageRendering: 'crisp-edges',
-          opacity: mapLoaded ? 0.4 : 0 // More visible wireframe
+                  style={{
+          opacity: mapLoaded ? 1 : 0,
+          transform: 'translateZ(0)', // Force hardware acceleration
+          backfaceVisibility: 'hidden',
+          imageRendering: 'auto',
+          filter: 'grayscale(1) contrast(1.2) brightness(0.9) invert(1)' // Black and white adjustment layer
         }}
       />
       
